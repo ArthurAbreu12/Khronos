@@ -1,0 +1,17 @@
+com\khronos\model\Project.class
+com\khronos\dao\TaskDAOImpl.class
+com\khronos\dao\EmployeeDAO.class
+com\khronos\model\Employee.class
+com\khronos\controller\TasksController.class
+com\khronos\dao\EmployeeDAOImpl.class
+com\khronos\dao\TaskDAO.class
+com\khronos\model\TimeEntry.class
+com\khronos\model\Task.class
+com\khronos\db\Database.class
+com\khronos\controller\ProjectsController.class
+com\khronos\dao\ProjectDAOImpl.class
+com\khronos\dao\TimeEntryDAO.class
+com\khronos\dao\TimeEntryDAOImpl.class
+com\khronos\controller\MainController.class
+com\khronos\MainApp.class
+com\khronos\dao\ProjectDAO.class

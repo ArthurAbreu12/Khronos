@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.shape.*?>
+<?import javafx.scene.text.*?>
+
+<BorderPane xmlns="http://javafx.com/javafx"
+            xmlns:fx="http://javafx.com/fxml"
+            fx:controller="com.khronos.controller.MainController"
+            styleClass="root-pane"
+            prefWidth="920" prefHeight="640">
+
+    <!-- ===================== CABEÇALHO ===================== -->
+    <top>
+        <HBox styleClass="header" spacing="14" alignment="CENTER_LEFT">
+            <padding><Insets top="18" right="24" bottom="18" left="24"/></padding>
+
+            <!-- Marca oficial do leopardo (extraída da identidade visual) -->
+            <ImageView fitHeight="46" preserveRatio="true">
+                <image>
+                    <Image url="@images/leopard-logo.png"/>
+                </image>
+            </ImageView>
+
+            <VBox alignment="CENTER_LEFT">
+                <Label text="KHRONOS" styleClass="brand-title"/>
+                <Label text="PLANEJE · REGISTRE · CONTROLE" styleClass="brand-subtitle"/>
+            </VBox>
+
+            <Region HBox.hgrow="ALWAYS"/>
+
+            <Label fx:id="statusLabel" text="conectando ao banco..." styleClass="status-label"/>
+        </HBox>
+    </top>
+
+    <!-- ===================== CONTEÚDO ===================== -->
+    <center>
+        <TabPane tabClosingPolicy="UNAVAILABLE" styleClass="main-tabs">
+
+            <!-- TAB CRONÔMETRO  -->
+            <Tab text="Cronômetro">
+                <VBox spacing="18" alignment="TOP_CENTER" styleClass="tab-content">
+                    <padding><Insets top="26" right="26" bottom="26" left="26"/></padding>
+
+                    <HBox spacing="12" alignment="CENTER" maxWidth="520">
+                        <ComboBox fx:id="projectCombo" promptText="Projeto" HBox.hgrow="ALWAYS" maxWidth="Infinity"/>
+                        <ComboBox fx:id="taskCombo" promptText="Tarefa" HBox.hgrow="ALWAYS" maxWidth="Infinity"/>
+                    </HBox>
+
+                    <StackPane styleClass="ring-frame">
+                        <Circle radius="110" styleClass="ring-track"/>
+                        <Label fx:id="timeLabel" text="00:00:00" styleClass="timer-time"/>
+                    </StackPane>
+                    <Label fx:id="activeTaskLabel" text="Selecione um projeto e uma tarefa" styleClass="timer-sublabel"/>
+
+                    <HBox spacing="12" alignment="CENTER" maxWidth="360">
+                        <Button fx:id="startButton" text="Iniciar" styleClass="btn-start" onAction="#onStart" maxWidth="Infinity" HBox.hgrow="ALWAYS"/>
+                        <Button fx:id="stopButton" text="Parar e salvar" styleClass="btn-stop" onAction="#onStop" disable="true" maxWidth="Infinity" HBox.hgrow="ALWAYS"/>
+                    </HBox>
+                </VBox>
+            </Tab>
+
+            <!--  TAB PROJETOS E TAREFAS  -->
+            <Tab text="Projetos &amp; Tarefas">
+                <VBox spacing="16" styleClass="tab-content">
+                    <padding><Insets top="22" right="26" bottom="22" left="26"/></padding>
+
+                    <HBox spacing="10">
+                        <TextField fx:id="newProjectField" promptText="Novo projeto..." HBox.hgrow="ALWAYS"/>
+                        <Button text="+ Projeto" styleClass="btn-ghost" onAction="#onAddProject"/>
+                    </HBox>
+                    <HBox spacing="10">
+                        <TextField fx:id="newTaskField" promptText="Nova tarefa (no projeto selecionado acima)..." HBox.hgrow="ALWAYS"/>
+                        <Button text="+ Tarefa" styleClass="btn-ghost" onAction="#onAddTask"/>
+                    </HBox>
+
+                    <TableView fx:id="taskTable" VBox.vgrow="ALWAYS">
+                        <columns>
+                            <TableColumn fx:id="colTaskName" text="Tarefa" prefWidth="280"/>
+                            <TableColumn fx:id="colTaskProject" text="Projeto" prefWidth="180"/>
+                            <TableColumn fx:id="colTaskTotal" text="Total apontado" prefWidth="140"/>
+                        </columns>
+                    </TableView>
+                </VBox>
+            </Tab>
+
+            <!--TAB RELATÓRIOS  -->
+            <Tab text="Relatórios">
+                <VBox spacing="16" styleClass="tab-content">
+                    <padding><Insets top="22" right="26" bottom="22" left="26"/></padding>
+                    <Label text="Horas totais por projeto" styleClass="section-title"/>
+                    <VBox fx:id="reportBox" spacing="14"/>
+                </VBox>
+            </Tab>
+
+            <!-- T AB HISTÓRICO -->
+            <Tab text="Histórico">
+                <VBox spacing="16" styleClass="tab-content">
+                    <padding><Insets top="22" right="26" bottom="22" left="26"/></padding>
+                    <TableView fx:id="historyTable" VBox.vgrow="ALWAYS">
+                        <columns>
+                            <TableColumn fx:id="colHistTask" text="Tarefa" prefWidth="240"/>
+                            <TableColumn fx:id="colHistProject" text="Projeto" prefWidth="160"/>
+                            <TableColumn fx:id="colHistWhen" text="Quando" prefWidth="120"/>
+                            <TableColumn fx:id="colHistDuration" text="Duração" prefWidth="120"/>
+                        </columns>
+                    </TableView>
+                </VBox>
+            </Tab>
+
+        </TabPane>
+    </center>
+</BorderPane>
