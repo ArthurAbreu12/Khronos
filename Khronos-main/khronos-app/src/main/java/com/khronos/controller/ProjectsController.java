@@ -1,7 +1,6 @@
 package com.khronos.controller;
 
-import com.khronos.dao.ProjectDAO;
-import com.khronos.dao.ProjectDAOImpl;
+import com.khronos.service.ProjectService;
 import com.khronos.model.Project;
 import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
@@ -28,7 +27,7 @@ public class ProjectsController {
     @FXML
     private TextField newProjectField;
 
-    private final ProjectDAO projectDAO = new ProjectDAOImpl();
+    private final ProjectService service = new ProjectService();
 
     @FXML
     public void initialize() {
@@ -42,7 +41,7 @@ public class ProjectsController {
 
         try {
 
-            List<Project> projetos = projectDAO.findAll();
+            List<Project> projetos = service.listarProjetos();
 
             projectCombo.setItems(
                     FXCollections.observableArrayList(projetos)
@@ -75,7 +74,7 @@ public class ProjectsController {
 
         try {
 
-            projectDAO.insert(nome, cor);
+            service.criarProjeto(nome, cor);
 
             newProjectField.clear();
 
@@ -104,7 +103,7 @@ public class ProjectsController {
 
         try {
 
-            projectDAO.delete(projeto.getId());
+            service.excluirProjeto(projeto.getId());
 
             carregarProjetos();
 

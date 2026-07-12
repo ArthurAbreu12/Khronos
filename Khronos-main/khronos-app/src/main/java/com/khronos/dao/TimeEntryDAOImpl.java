@@ -10,7 +10,7 @@ import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 
-public class TimeEntryDAOImpl {
+public class TimeEntryDAOImpl implements TimeEntryDAO {
     public TimeEntry insert(int taskId, LocalDateTime start, LocalDateTime end) throws SQLException {
         long durationSeconds = java.time.Duration.between(start, end).getSeconds();
         String sql = "INSERT INTO time_entries (task_id, start_time, end_time, duration_seconds) " +

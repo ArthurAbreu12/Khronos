@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<VBox xmlns="http://javafx.com/javafx/21"
+      xmlns:fx="http://javafx.com/fxml/1"
+      fx:controller="com.khronos.controller.TasksController"
+      spacing="22"
+      alignment="TOP_CENTER"
+      styleClass="tab-content">
+
+    <padding>
+        <Insets top="28" right="28" bottom="28" left="28"/>
+    </padding>
+
+    <!-- Título -->
+    <Label text="TAREFAS"
+           styleClass="brand-title"/>
+
+    <!-- Card -->
+    <VBox spacing="20"
+          maxWidth="760"
+          styleClass="form-card">
+
+        <GridPane hgap="18"
+                  vgap="16">
+
+            <columnConstraints>
+                <ColumnConstraints minWidth="120"/>
+                <ColumnConstraints hgrow="ALWAYS"/>
+            </columnConstraints>
+
+            <!-- Projeto -->
+            <Label text="Projeto"
+                   styleClass="form-label"
+                   GridPane.rowIndex="0"
+                   GridPane.columnIndex="0"/>
+
+            <ComboBox fx:id="projectCombo"
+                      promptText="Selecione um projeto"
+                      GridPane.rowIndex="0"
+                      GridPane.columnIndex="1"
+                      maxWidth="Infinity"/>
+
+            <!-- Nova tarefa -->
+            <Label text="Nova tarefa"
+                   styleClass="form-label"
+                   GridPane.rowIndex="1"
+                   GridPane.columnIndex="0"/>
+
+            <TextField fx:id="newTaskField"
+                       promptText="Digite o nome da tarefa"
+                       GridPane.rowIndex="1"
+                       GridPane.columnIndex="1"
+                       maxWidth="Infinity"/>
+
+            <!-- Tarefa -->
+            <Label text="Tarefa cadastrada"
+                   styleClass="form-label"
+                   GridPane.rowIndex="2"
+                   GridPane.columnIndex="0"/>
+
+            <ComboBox fx:id="taskCombo"
+                      promptText="Selecione uma tarefa"
+                      GridPane.rowIndex="2"
+                      GridPane.columnIndex="1"
+                      maxWidth="Infinity"/>
+
+        </GridPane>
+
+        <Separator/>
+
+        <!-- Botões -->
+        <HBox spacing="12"
+              alignment="CENTER_LEFT">
+
+            <Button text="Adicionar"
+                    onAction="#onAddTask"
+                    styleClass="btn-start"
+                    prefWidth="150"/>
+
+            <Region HBox.hgrow="ALWAYS"/>
+
+            <Button text="Excluir"
+                    onAction="#onDeleteTask"
+                    styleClass="btn-stop"
+                    prefWidth="150"/>
+
+        </HBox>
+
+    </VBox>
+
+    <!-- Tabela -->
+    <VBox spacing="10"
+          VBox.vgrow="ALWAYS"
+          maxWidth="900">
+
+        <Label text="Tarefas cadastradas"
+               styleClass="section-title"/>
+
+        <TableView fx:id="taskTable"
+                   VBox.vgrow="ALWAYS">
+
+            <columnResizePolicy>
+                <TableView fx:constant="CONSTRAINED_RESIZE_POLICY"/>
+            </columnResizePolicy>
+
+            <columns>
+
+                <TableColumn fx:id="colTaskName"
+                             text="Tarefa"/>
+
+                <TableColumn fx:id="colTaskProject"
+                             text="Projeto"/>
+
+            </columns>
+
+        </TableView>
+
+    </VBox>
+
+</VBox>

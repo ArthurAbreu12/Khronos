@@ -30,6 +30,31 @@ public class ProjectDAOImpl implements ProjectDAO {
         return result;
     }
 
+
+    @Override
+    public Project findById(int id) throws SQLException {
+
+        String sql = "SELECT * FROM projects WHERE id = ?";
+
+        try(Connection conn = Database.getConnection();
+            PreparedStatement stmt = conn.prepareStatement(sql)) {
+
+            stmt.setInt(1, id);
+
+            ResultSet rs = stmt.executeQuery();
+
+            if(rs.next()) {
+                return new Project(
+                        rs.getInt("id"),
+                        rs.getString("name"),
+                        rs.getString("color")
+                );
+            }
+        }
+
+        return null;
+    }
+
     @Override
     public Project insert(String name, String color) throws SQLException {
         String sql = "INSERT INTO projects (name, color) VALUES (?, ?) RETURNING id";
@@ -55,6 +80,21 @@ public class ProjectDAOImpl implements ProjectDAO {
              PreparedStatement stmt = conn.prepareStatement(sql)) {
 
             stmt.setInt(1, id);
+            stmt.executeUpdate();
+        }
+    }
+
+    @Override
+    public void update(Project project) throws SQLException {
+        String sql = "UPDATE projects SET name = ?, color = ? WHERE id = ?";
+
+        try (Connection conn = Database.getConnection();
+             PreparedStatement stmt = conn.prepareStatement(sql)) {
+
+            stmt.setString(1, project.getName());
+            stmt.setString(2, project.getColor());
+            stmt.setInt(3, project.getId());
+
             stmt.executeUpdate();
         }
     }

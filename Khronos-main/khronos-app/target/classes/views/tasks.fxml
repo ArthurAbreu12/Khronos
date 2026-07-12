@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<BorderPane xmlns="http://javafx.com/javafx/21"
+            xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="com.khronos.controller.TasksController">
+
+    <top>
+        <VBox spacing="10">
+            <padding>
+                <Insets top="15" right="15" bottom="15" left="15"/>
+            </padding>
+
+            <Label text="Gerenciamento de Tarefas"
+                   style="-fx-font-size:22px; -fx-font-weight:bold;"/>
+
+            <GridPane hgap="10" vgap="10">
+
+                <Label text="Projeto:"
+                       GridPane.rowIndex="0"
+                       GridPane.columnIndex="0"/>
+
+                <ComboBox fx:id="projectCombo"
+                          prefWidth="250"
+                          GridPane.rowIndex="0"
+                          GridPane.columnIndex="1"/>
+
+                <Label text="Nova tarefa:"
+                       GridPane.rowIndex="1"
+                       GridPane.columnIndex="0"/>
+
+                <TextField fx:id="newTaskField"
+                           promptText="Nome da tarefa"
+                           GridPane.rowIndex="1"
+                           GridPane.columnIndex="1"/>
+
+                <Label text="Excluir tarefa:"
+                       GridPane.rowIndex="2"
+                       GridPane.columnIndex="0"/>
+
+                <ComboBox fx:id="taskCombo"
+                          prefWidth="250"
+                          GridPane.rowIndex="2"
+                          GridPane.columnIndex="1"/>
+
+            </GridPane>
+
+            <HBox spacing="10">
+
+                <Button text="Adicionar"
+                        onAction="#onAddTask"/>
+
+                <Button text="Excluir"
+                        onAction="#onDeleteTask"/>
+
+            </HBox>
+
+        </VBox>
+    </top>
+
+    <center>
+
+        <TableView fx:id="taskTable">
+
+            <columns>
+
+                <TableColumn fx:id="colTaskName"
+                             text="Tarefa"
+                             prefWidth="250"/>
+
+                <TableColumn fx:id="colTaskProject"
+                             text="Projeto"
+                             prefWidth="250"/>
+
+            </columns>
+
+        </TableView>
+
+    </center>
+
+</BorderPane>

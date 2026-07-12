@@ -5,6 +5,7 @@
     <option name="originalFiles">
       <list>
         <option value="$PROJECT_DIR$/khronos-app/pom.xml" />
+        <option value="$PROJECT_DIR$/Khronos-main/khronos-app/pom.xml" />
       </list>
     </option>
   </component>

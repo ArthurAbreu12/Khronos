@@ -11,9 +11,11 @@ public interface TaskDAO {
 
     List<Task> findByProject(int projectId) throws SQLException;
 
+    Task findById(int id) throws SQLException;
+
     Task insert(String name, int projectId) throws SQLException;
 
-    Task findById(int id) throws SQLException;
+    void update(Task task) throws SQLException;
 
     void delete(int id) throws SQLException;
 }

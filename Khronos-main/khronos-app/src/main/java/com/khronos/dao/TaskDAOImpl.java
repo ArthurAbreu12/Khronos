@@ -15,6 +15,28 @@ public class TaskDAOImpl implements TaskDAO {
             "SELECT t.id, t.name, p.id AS project_id, p.name AS project_name, p.color AS project_color " +
                     "FROM tasks t JOIN projects p ON p.id = t.project_id ";
 
+
+    @Override
+    public void update(Task task) throws SQLException {
+
+        String sql = """
+            UPDATE tasks
+               SET name = ?,
+                   project_id = ?
+             WHERE id = ?
+            """;
+
+        try (Connection conn = Database.getConnection();
+             PreparedStatement stmt = conn.prepareStatement(sql)) {
+
+            stmt.setString(1, task.getName());
+            stmt.setLong(2, task.getProjectId());
+            stmt.setLong(3, task.getId());
+
+            stmt.executeUpdate();
+        }
+    }
+
     @Override
     public List<Task> findAll() throws SQLException {
         String sql = BASE_SELECT + "ORDER BY t.id";

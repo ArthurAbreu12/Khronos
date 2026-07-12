@@ -11,7 +11,7 @@ public class MainApp extends Application {
 
     @Override
     public void start(Stage stage) throws Exception {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/khronos/images/views/main.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/views/main.fxml"));
         Parent root = loader.load();
 
         Scene scene = new Scene(root, 920, 640);

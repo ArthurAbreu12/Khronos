@@ -1,9 +1,7 @@
 package com.khronos.controller;
 
-import com.khronos.dao.ProjectDAO;
-import com.khronos.dao.ProjectDAOImpl;
-import com.khronos.dao.TaskDAO;
-import com.khronos.dao.TaskDAOImpl;
+import com.khronos.service.ProjectService;
+import com.khronos.service.TaskService;
 import com.khronos.model.Project;
 import com.khronos.model.Task;
 import javafx.beans.property.SimpleStringProperty;
@@ -39,8 +37,8 @@ public class TasksController {
     @FXML
     private TableColumn<Task, String> colTaskProject;
 
-    private final TaskDAO taskDAO = new TaskDAOImpl();
-    private final ProjectDAO projectDAO = new ProjectDAOImpl();
+    private final TaskService taskService = new TaskService();
+    private final ProjectService projectService = new ProjectService();
 
     private List<Task> allTasks = new ArrayList<>();
 
@@ -65,7 +63,7 @@ public class TasksController {
 
         try {
 
-            List<Project> projetos = projectDAO.findAll();
+            List<Project> projetos = projectService.listarProjetos();
 
             projectCombo.setItems(
                     FXCollections.observableArrayList(projetos)
@@ -88,7 +86,7 @@ public class TasksController {
 
         try {
 
-            allTasks = taskDAO.findAll();
+            allTasks = taskService.listarTarefas();
 
             taskTable.setItems(
                     FXCollections.observableArrayList(allTasks)
@@ -163,7 +161,7 @@ public class TasksController {
 
         try {
 
-            taskDAO.insert(nome, projeto.getId());
+            taskService.cadastrarTarefa(nome, projeto.getId());
 
             newTaskField.clear();
 
@@ -193,7 +191,7 @@ public class TasksController {
 
         try {
 
-            taskDAO.delete(tarefa.getId());
+            taskService.excluirTarefa(tarefa.getId());
 
             carregarTarefas();
 

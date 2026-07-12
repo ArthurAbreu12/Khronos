@@ -13,6 +13,7 @@ public interface EmployeeDAO {
 
     Employee insert(String nome, String cargo, double salario) throws SQLException;
 
-    void demitir(int id) throws SQLException;
+    void update(Employee employee) throws SQLException;
 
+    void demitir(int id) throws SQLException;
 }
