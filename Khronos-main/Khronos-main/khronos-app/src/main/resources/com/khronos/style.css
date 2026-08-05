@@ -1,0 +1,212 @@
+/* ===========================================================
+   KHRONOS - Identidade visual oficial (extraída do PDF da marca)
+   Fundo lilás:      #b7b8ee
+   Leopardo/acento:  #6d6da9
+   Texto navy:       #1c1b83
+   =========================================================== */
+
+.root-pane {
+    -fx-background-color: #f4f3fc;
+    -fx-font-family: "Georgia", "Cambria", serif;
+}
+
+/* ---------- HEADER ---------- */
+.header {
+    -fx-background-color: #b7b8ee;
+}
+.brand-title {
+    -fx-text-fill: #1c1b83;
+    -fx-font-size: 24px;
+    -fx-font-family: "Cambria", "Times New Roman", serif;
+    -fx-font-weight: bold;
+    -fx-letter-spacing: 2px;
+}
+.brand-subtitle {
+    -fx-text-fill: #1c1b83;
+    -fx-font-size: 10.5px;
+    -fx-font-family: "Cambria", "Times New Roman", serif;
+    -fx-letter-spacing: 1.5px;
+}
+.status-label {
+    -fx-text-fill: #4b4a8f;
+    -fx-font-size: 11.5px;
+    -fx-font-family: "Segoe UI", sans-serif;
+}
+.status-ok {
+    -fx-text-fill: #1c1b83;
+}
+.status-error {
+    -fx-text-fill: #a13a3a;
+}
+
+/* ---------- TABS ---------- */
+.main-tabs .tab-header-area .tab-header-background {
+    -fx-background-color: #e3e2f7;
+}
+.main-tabs .tab {
+    -fx-background-color: #e3e2f7;
+    -fx-background-insets: 0;
+    -fx-padding: 10 18 10 18;
+}
+.main-tabs .tab:selected {
+    -fx-background-color: #f4f3fc;
+    -fx-border-color: #6d6da9 transparent transparent transparent;
+    -fx-border-width: 2 0 0 0;
+}
+.main-tabs .tab .tab-label {
+    -fx-text-fill: #6b6a99;
+    -fx-font-size: 12.5px;
+    -fx-font-family: "Segoe UI", sans-serif;
+    -fx-font-weight: 600;
+}
+.main-tabs .tab:selected .tab-label {
+    -fx-text-fill: #1c1b83;
+}
+.tab-content {
+    -fx-background-color: #f4f3fc;
+}
+
+/* ---------- TIMER ---------- */
+.ring-frame {
+    -fx-min-width: 230px;
+    -fx-min-height: 230px;
+    -fx-max-width: 230px;
+    -fx-max-height: 230px;
+}
+.ring-track {
+    -fx-fill: transparent;
+    -fx-stroke: #cfcdec;
+    -fx-stroke-width: 10;
+}
+.timer-time {
+    -fx-text-fill: #1c1b83;
+    -fx-font-size: 34px;
+    -fx-font-family: "Consolas", "Courier New", monospace;
+    -fx-font-weight: bold;
+}
+.timer-sublabel {
+    -fx-text-fill: #6b6a99;
+    -fx-font-size: 12px;
+    -fx-font-family: "Segoe UI", sans-serif;
+}
+
+/* ---------- BUTTONS ---------- */
+.btn-start {
+    -fx-background-color: #6d6da9;
+    -fx-text-fill: #ffffff;
+    -fx-font-family: "Segoe UI", sans-serif;
+    -fx-font-weight: bold;
+    -fx-background-radius: 8;
+    -fx-padding: 10 20 10 20;
+    -fx-cursor: hand;
+}
+.btn-start:hover {
+    -fx-background-color: #5d5d97;
+}
+.btn-start:disabled {
+    -fx-opacity: 0.4;
+}
+
+.btn-stop {
+    -fx-background-color: transparent;
+    -fx-text-fill: #a13a3a;
+    -fx-border-color: #a13a3a;
+    -fx-border-radius: 8;
+    -fx-background-radius: 8;
+    -fx-padding: 9 20 9 20;
+    -fx-font-family: "Segoe UI", sans-serif;
+    -fx-cursor: hand;
+}
+.btn-stop:hover {
+    -fx-background-color: rgba(161,58,58,0.10);
+}
+.btn-stop:disabled {
+    -fx-opacity: 0.35;
+}
+
+.btn-ghost {
+    -fx-background-color: #e3e2f7;
+    -fx-text-fill: #1c1b83;
+    -fx-border-color: #cfcdec;
+    -fx-border-radius: 8;
+    -fx-background-radius: 8;
+    -fx-padding: 8 16 8 16;
+    -fx-font-family: "Segoe UI", sans-serif;
+    -fx-cursor: hand;
+}
+.btn-ghost:hover {
+    -fx-border-color: #6d6da9;
+}
+
+/* ---------- INPUTS ---------- */
+.text-field, .combo-box {
+    -fx-background-color: #ffffff;
+    -fx-text-fill: #1c1b83;
+    -fx-border-color: #cfcdec;
+    -fx-border-radius: 8;
+    -fx-background-radius: 8;
+    -fx-padding: 4;
+    -fx-font-family: "Segoe UI", sans-serif;
+}
+.combo-box .list-cell {
+    -fx-text-fill: #1c1b83;
+    -fx-background-color: #ffffff;
+}
+.text-field:focused, .combo-box:focused {
+    -fx-border-color: #6d6da9;
+}
+
+/* ---------- TABLE ---------- */
+.table-view {
+    -fx-background-color: #ffffff;
+    -fx-border-color: #cfcdec;
+}
+.table-view .column-header-background {
+    -fx-background-color: #e3e2f7;
+}
+.table-view .column-header .label {
+    -fx-text-fill: #4b4a8f;
+    -fx-font-size: 11px;
+    -fx-font-family: "Segoe UI", sans-serif;
+    -fx-font-weight: bold;
+}
+.table-row-cell {
+    -fx-background-color: #ffffff;
+    -fx-text-fill: #1c1b83;
+    -fx-border-color: transparent transparent #ece9f9 transparent;
+}
+.table-row-cell:odd {
+    -fx-background-color: #f7f6fd;
+}
+.table-row-cell:selected {
+    -fx-background-color: #cfcdec;
+}
+.table-view .table-cell {
+    -fx-text-fill: #1c1b83;
+    -fx-font-family: "Segoe UI", sans-serif;
+}
+
+/* ---------- REPORT BARS ---------- */
+.section-title {
+    -fx-text-fill: #4b4a8f;
+    -fx-font-size: 12.5px;
+    -fx-font-family: "Segoe UI", sans-serif;
+    -fx-font-weight: bold;
+}
+.report-row-name {
+    -fx-text-fill: #1c1b83;
+    -fx-font-size: 13px;
+    -fx-font-family: "Segoe UI", sans-serif;
+}
+.report-row-time {
+    -fx-text-fill: #6d6da9;
+    -fx-font-family: "Consolas", "Courier New", monospace;
+    -fx-font-size: 12.5px;
+    -fx-font-weight: bold;
+}
+.report-bar {
+    -fx-accent: #6d6da9;
+    -fx-background-color: #e3e2f7;
+    -fx-background-radius: 6;
+    -fx-control-inner-background: #e3e2f7;
+}

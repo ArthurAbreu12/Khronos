@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<VBox xmlns="http://javafx.com/javafx/21"
+      xmlns:fx="http://javafx.com/fxml/1"
+      fx:controller="com.khronos.controller.ProjectsController"
+      spacing="22"
+      alignment="TOP_CENTER"
+      styleClass="tab-content">
+
+    <padding>
+        <Insets top="28" right="28" bottom="28" left="28"/>
+    </padding>
+
+    <!-- Título -->
+    <Label text="PROJETOS"
+           styleClass="brand-title"/>
+
+    <!-- Card -->
+    <VBox spacing="20"
+          maxWidth="760"
+          styleClass="form-card">
+
+        <GridPane hgap="18"
+                  vgap="16">
+
+            <columnConstraints>
+                <ColumnConstraints minWidth="120"/>
+                <ColumnConstraints hgrow="ALWAYS"/>
+            </columnConstraints>
+
+            <!-- Novo Projeto -->
+            <Label text="Novo Projeto"
+                   styleClass="form-label"
+                   GridPane.rowIndex="0"
+                   GridPane.columnIndex="0"/>
+
+            <TextField fx:id="newProjectField"
+                       promptText="Digite o nome do projeto"
+                       GridPane.rowIndex="0"
+                       GridPane.columnIndex="1"
+                       maxWidth="Infinity"/>
+
+            <!-- Projetos -->
+            <Label text="Projetos"
+                   styleClass="form-label"
+                   GridPane.rowIndex="1"
+                   GridPane.columnIndex="0"/>
+
+            <ComboBox fx:id="projectCombo"
+                      promptText="Selecione um projeto"
+                      GridPane.rowIndex="1"
+                      GridPane.columnIndex="1"
+                      maxWidth="Infinity"/>
+
+        </GridPane>
+
+        <Separator/>
+
+        <HBox spacing="12"
+              alignment="CENTER_LEFT">
+
+            <Button text="Adicionar"
+                    onAction="#onAddProject"
+                    styleClass="btn-start"
+                    prefWidth="150"/>
+
+            <Region HBox.hgrow="ALWAYS"/>
+
+            <Button text="Excluir"
+                    onAction="#onDeleteProject"
+                    styleClass="btn-stop"
+                    prefWidth="150"/>
+
+        </HBox>
+
+    </VBox>
+
+</VBox>

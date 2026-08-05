@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.shape.Circle?>
+
+<VBox xmlns="http://javafx.com/javafx"
+      xmlns:fx="http://javafx.com/fxml"
+      fx:controller="com.khronos.controller.TimeEntryController"
+      spacing="18"
+      alignment="TOP_CENTER"
+      styleClass="tab-content">
+
+    <padding>
+        <Insets top="26" right="26" bottom="26" left="26"/>
+    </padding>
+
+    <HBox spacing="12"
+          alignment="CENTER"
+          maxWidth="520">
+
+        <ComboBox fx:id="projectCombo"
+                  promptText="Projeto"
+                  HBox.hgrow="ALWAYS"
+                  maxWidth="Infinity"/>
+
+        <ComboBox fx:id="taskCombo"
+                  promptText="Tarefa"
+                  HBox.hgrow="ALWAYS"
+                  maxWidth="Infinity"/>
+
+    </HBox>
+
+    <StackPane styleClass="ring-frame">
+
+        <Circle radius="110"
+                styleClass="ring-track"/>
+
+        <Label fx:id="timeLabel"
+               text="00:00:00"
+               styleClass="timer-time"/>
+
+    </StackPane>
+
+    <Label fx:id="activeTaskLabel"
+           text="Selecione um projeto e uma tarefa"
+           styleClass="timer-sublabel"/>
+
+    <HBox spacing="12"
+          alignment="CENTER"
+          maxWidth="360">
+
+        <Button fx:id="startButton"
+                text="Iniciar"
+                styleClass="btn-start"
+                onAction="#onStart"
+                HBox.hgrow="ALWAYS"
+                maxWidth="Infinity"/>
+
+        <Button fx:id="stopButton"
+                text="Parar e salvar"
+                styleClass="btn-stop"
+                disable="true"
+                onAction="#onStop"
+                HBox.hgrow="ALWAYS"
+                maxWidth="Infinity"/>
+
+    </HBox>
+
+</VBox>

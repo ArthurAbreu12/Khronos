@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.shape.*?>
+<?import javafx.scene.text.*?>
+
+<BorderPane xmlns="http://javafx.com/javafx"
+            xmlns:fx="http://javafx.com/fxml"
+            fx:controller="com.khronos.controller.MainController"
+            styleClass="root-pane"
+            prefWidth="920" prefHeight="640">
+
+    <!-- ===================== CABEÇALHO ===================== -->
+    <top>
+        <HBox styleClass="header" spacing="14" alignment="CENTER_LEFT">
+            <padding><Insets top="18" right="24" bottom="18" left="24"/></padding>
+
+            <!-- Marca oficial do leopardo (extraída da identidade visual) -->
+            <ImageView fitHeight="46" preserveRatio="true">
+                <image>
+                    <Image url="@../com/khronos/images/leopard-logo.png"/>
+                </image>
+            </ImageView>
+
+            <VBox alignment="CENTER_LEFT">
+                <Label text="KHRONOS" styleClass="brand-title"/>
+                <Label text="PLANEJE · REGISTRE · CONTROLE" styleClass="brand-subtitle"/>
+            </VBox>
+
+            <Region HBox.hgrow="ALWAYS"/>
+
+            <Label fx:id="statusLabel" text="conectando ao banco..." styleClass="status-label"/>
+        </HBox>
+    </top>
+
+    <!-- ===================== CONTEÚDO ===================== -->
+    <center>
+        <TabPane tabClosingPolicy="UNAVAILABLE">
+
+            <Tab text="Cronômetro">
+                <content>
+                    <fx:include source="timeEntry.fxml"/>
+                </content>
+            </Tab>
+
+            <Tab text="Projetos">
+                <content>
+                    <fx:include source="projects.fxml"/>
+                </content>
+            </Tab>
+
+            <Tab text="Tarefas">
+                <content>
+                    <fx:include source="tasks.fxml"/>
+                </content>
+            </Tab>
+
+            <Tab text="Funcionários">
+                <content>
+                    <fx:include source="employees.fxml"/>
+                </content>
+            </Tab>
+
+        </TabPane>
+    </center>
+</BorderPane>
