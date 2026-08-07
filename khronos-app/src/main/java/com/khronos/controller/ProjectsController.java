@@ -2,10 +2,12 @@ package com.khronos.controller;
 
 import com.khronos.service.ProjectService;
 import com.khronos.model.Project;
+
 import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ComboBox;
+import javafx.scene.control.ListCell;
 import javafx.scene.control.TextField;
 
 import java.sql.SQLException;
@@ -27,112 +29,206 @@ public class ProjectsController {
     @FXML
     private TextField newProjectField;
 
+
     private final ProjectService service = new ProjectService();
+
 
     @FXML
     public void initialize() {
+
+        configurarComboBox();
+
         carregarProjetos();
+
     }
 
-    /**
-     * Carrega todos os projetos do banco.
-     */
+
+    private void configurarComboBox() {
+
+        projectCombo.setCellFactory(param -> new ListCell<>() {
+
+            @Override
+            protected void updateItem(Project projeto, boolean empty) {
+
+                super.updateItem(projeto, empty);
+
+                if (empty || projeto == null) {
+                    setText(null);
+                } else {
+                    setText(projeto.getName());
+                }
+            }
+        });
+
+
+        projectCombo.setButtonCell(new ListCell<>() {
+
+            @Override
+            protected void updateItem(Project projeto, boolean empty) {
+
+                super.updateItem(projeto, empty);
+
+                if (empty || projeto == null) {
+                    setText(null);
+                } else {
+                    setText(projeto.getName());
+                }
+            }
+        });
+
+    }
+
+
     public void carregarProjetos() {
 
         try {
 
             List<Project> projetos = service.listarProjetos();
 
+
+            if (projetos == null) {
+                projetos = List.of();
+            }
+
+
             projectCombo.setItems(
                     FXCollections.observableArrayList(projetos)
             );
 
+
             if (!projetos.isEmpty()) {
-                projectCombo.getSelectionModel().selectFirst();
+                projectCombo.getSelectionModel()
+                        .selectFirst();
             }
 
+
         } catch (SQLException e) {
-            mostrarErro(e.getMessage());
+
+            mostrarErro(
+                    "Erro ao carregar projetos.\n\n"
+                            + e.getMessage()
+            );
+
         }
 
     }
 
-    //Adiciona um novo projeto.
+
     @FXML
-    private void onAddProject() {
+    public void onAddProject() {
+
 
         String nome = newProjectField.getText().trim();
 
+
         if (nome.isBlank()) {
-            mostrarErro("Digite o nome do projeto.");
+
+            mostrarErro(
+                    "Digite o nome do projeto."
+            );
+
             return;
         }
 
+
         String cor = PALETTE[
-                projectCombo.getItems().size() % PALETTE.length
+                projectCombo.getItems().size()
+                        % PALETTE.length
                 ];
 
+
         try {
+
 
             service.criarProjeto(nome, cor);
 
+
             newProjectField.clear();
+
 
             carregarProjetos();
 
+
         } catch (SQLException e) {
 
-            mostrarErro("Erro ao cadastrar projeto.\n\n" + e.getMessage());
+
+            mostrarErro(
+                    "Erro ao cadastrar projeto.\n\n"
+                            + e.getMessage()
+            );
 
         }
 
     }
 
-    //Remove um projeto.
-    @FXML
-    private void onDeleteProject() {
 
-        Project projeto = projectCombo.getValue();
+
+    @FXML
+    public void onDeleteProject() {
+
+
+        Project projeto =
+                projectCombo.getValue();
+
 
         if (projeto == null) {
 
-            mostrarErro("Selecione um projeto.");
+            mostrarErro(
+                    "Selecione um projeto."
+            );
 
             return;
+
         }
+
 
         try {
 
-            service.excluirProjeto(projeto.getId());
+
+            service.excluirProjeto(
+                    projeto.getId()
+            );
+
 
             carregarProjetos();
 
+
         } catch (SQLException e) {
 
-            mostrarErro("Erro ao excluir projeto.\n\n" + e.getMessage());
+
+            mostrarErro(
+                    "Erro ao excluir projeto.\n\n"
+                            + e.getMessage()
+            );
 
         }
 
     }
 
-    // Retorna o projeto atualmente selecionado.
+
+
     public Project getProjetoSelecionado() {
 
         return projectCombo.getValue();
 
     }
 
-    //Atualiza a ComboBox.
+
+
     public void atualizarProjetos() {
 
         carregarProjetos();
 
     }
 
-    //Exibe mensagens de erro.
+
+
     private void mostrarErro(String mensagem) {
 
-        Alert alert = new Alert(Alert.AlertType.ERROR);
+
+        Alert alert =
+                new Alert(Alert.AlertType.ERROR);
+
 
         alert.setTitle("Khronos");
 

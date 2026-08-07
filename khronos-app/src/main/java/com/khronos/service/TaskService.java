@@ -23,6 +23,10 @@ public class TaskService {
         return taskDAO.insert(nome, projectId);
     }
 
+    public void atualizar(Task task) throws SQLException {
+        taskDAO.update(task);
+    }
+
     public void excluirTarefa(int id) throws SQLException {
         taskDAO.delete(id);
     }

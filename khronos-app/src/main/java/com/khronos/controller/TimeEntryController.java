@@ -1,11 +1,10 @@
 package com.khronos.controller;
 
+import com.khronos.model.Project;
+import com.khronos.model.Task;
 import com.khronos.service.ProjectService;
 import com.khronos.service.TaskService;
 import com.khronos.service.TimeEntryService;
-import com.khronos.model.Project;
-import com.khronos.model.Task;
-
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.collections.FXCollections;
@@ -120,6 +119,16 @@ public class TimeEntryController {
         startTime = LocalDateTime.now();
         running = true;
 
+        // Salva o horário de início da tarefa
+        currentTask.setStartedAt(startTime);
+
+        try {
+            taskService.atualizar(currentTask);
+        } catch (SQLException e) {
+            mostrarErro("Erro ao salvar o início da tarefa.\n\n" + e.getMessage());
+            return;
+        }
+
         startButton.setDisable(true);
         stopButton.setDisable(false);
 
@@ -172,6 +181,9 @@ public class TimeEntryController {
 
             currentTask = null;
             startTime = null;
+
+            // Atualiza a lista de tarefas
+            allTasks = taskService.listarTarefas();
 
         } catch (SQLException e) {
 
